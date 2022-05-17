@@ -29,10 +29,15 @@ $$
 {%post_link encrypt blog 2:123%}
 ```
 {% raw %}
-{%post_link encrypt blog 2:123%}
+{%post_link encrypt blog 2:123   %}
 {% endraw %}
 ```
 # image
-
-
+```
+{% raw %}
 {% asset_img nahan.png %}
+{% endraw %}
+```
+{% asset_img nahan.png %}
+
+
