@@ -17,6 +17,13 @@ theme_config:
   back_home_text: ".." # customize text for homepage link in post layout
   date_format: "%Y-%m-%d" # customize how date is formatted
   show_description: false # show blog description in home page
+  encrypt_title: "Content is Encryped :)"
+  # decrypt_btn: 解密
+  # encrypt_btn: 重新加密
+  # 
+  # forbid_cache_password:  true
+
+
 
 sass:
   style: :compressed
