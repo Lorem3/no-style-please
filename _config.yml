@@ -21,7 +21,10 @@ theme_config:
   encrypt_clear_btn: "清空缓存密码"
   decrypt_btn: 解密
   encrypt_btn: 重新加密
-  encrypt_clear_btn: 清空密码缓存
+  tag_showall: true
+  all_tags_path: tags
+  all_tags_title: All Tags
+
   # 
   # forbid_cache_password:  true
 

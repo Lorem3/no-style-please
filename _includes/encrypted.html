@@ -5,6 +5,7 @@
     <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
     <p>
         <input type="button" value= "{{ site.theme_config.decrypt_btn | default : 'Decrypt' }}" id="DecryptBtn"/>
+        <input type="button" value= "{{ site.theme_config.encrypt_clear_btn | default: 'Clear password cache' }}" id="ClearBtn1"/>
     
     </div>
     
@@ -14,7 +15,7 @@
            
             <input type="button" value= "{{ site.theme_config.encrypt_btn | default: 'Encrypt' }}" id="EncryptBtn"/>
 
-            <input type="button" value= "{{ site.theme_config.encrypt_clear_btn | default: 'Clear password cache' }}" id="ClearBtn"/>
+            <input type="button" value= "{{ site.theme_config.encrypt_clear_btn | default: 'Clear password cache' }}" id="ClearBtn2"/>
            
         </div>
         <div id = 'decryptContent'>
@@ -94,7 +95,10 @@
             clearKey()
         }
 
-        document.getElementById("ClearBtn").onclick = function(){
+        document.getElementById("ClearBtn1").onclick = function(){
+            localStorage.clear();
+        }
+        document.getElementById("ClearBtn2").onclick = function(){
             localStorage.clear();
         }
 
