@@ -1,7 +1,7 @@
 # no style, please!
 
 <img src="https://raw.githubusercontent.com/riggraz/no-style-please/master/logo.png" width="64" align="left" />A (nearly) no-CSS, fast, minimalist [Jekyll](https://jekyllrb.com/) theme.
-Inspired by [elly's site](http://tilde.town/~elly/) [riggraz](https://riggraz.dev/),  
+Inspired by [elly's site](http://tilde.town/~elly/) [riggraz](https://riggraz.dev/)
 
 <h3 align="center"><a href="https://vitock.github.io/no-style-please-demo">Try the demo out!</a></h3>
 
@@ -14,6 +14,10 @@ Inspired by [elly's site](http://tilde.town/~elly/) [riggraz](https://riggraz.de
   + mathjax , inluce_code post_link support, include 
   + support, link to other post 
   + encrytion support. Only those who know the password can view the article
+
+  **IMPORTANT NOTE**
+  ONLY textual contents of article will be encrypted ,the pictures will  **NOT** be encrypted
+
   
   #### how to encrypt your post
   1. generate your own public & private key to protect your password
