@@ -9,13 +9,63 @@ Inspired by [elly's site](http://tilde.town/~elly/), expressly created for [my p
 
 ## Features
 
-* Fast (**1kb of CSS!** For more information on performance and more, see [Page Speed Insights report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/page-speed-insights-report.png) and [Lighthouse report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/lighthouse-report.png))
-* Light, dark and auto modes
-* Responsive
-* Content first (typography optimized for maximum readability)
-* SEO optimized (uses [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag))
-* RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))
-* Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))
++ ### new
+  + tags support 
+  + mathjax , inluce_code post_link support, include 
+  + support, link to other post 
+  + encrytion support. Only those who know the password can view the article
+  
+  #### how to encrypt your post
+  1. generate your own public & private key to protect your password
+```
+ltectool g
+```
+  you will get 
+  ```
+publickey: AAA
+privatekey: BBBBB
+  ```
+  2. encrypt your password 
+  ``` bash
+   # ltectool e [your publickey] [your password]
+   # like below
+   ltectool e Arkuf0hG0sjifj+G57o4gwPgnXXD72kIhjhSGjyyGCdS 123
+
+   # output
+AQAQACAAIQCVKE9YHFT4pzyMa84kqGK+4Olo3EeDlymDa0oZcsQ48j8S4D4fMFb37gUT4LgrxZQDCFLa402i9VhhMIYWXZP+WSsv2Ia+uQpEH5vYKgDR5vL4xXC/76wXl3K7abU7u9du
+
+  ```
+   you get your encrypted password ,
+   then put it in  `_config.yml`
+
+```yaml
+enc_tags:
+    - tag: encrypt1 
+      password: "123"  # plain text ,NOT recommended
+
+    - tag: encrypt2
+      # 123
+      password: AQAQACAAIQCVKE9YHFT4pzyMa84kqGK+4Olo3EeDlymDa0oZcsQ48j8S4D4fMFb37gUT4LgrxZQDCFLa402i9VhhMIYWXZP+WSsv2Ia+uQpEH5vYKgDR5vL4xXC/76wXl3K7abU7u9du
+```
+   add JEKYLL_EC_PRIVATEKEY to ENV   before you run jekyll build 
+   or set JEKYLL_EC_PRIVATEKEY to your CI environment
+   ``` bash
+    #export set JEKYLL_EC_PRIVATEKEY=[Private key]
+    export set JEKYLL_EC_PRIVATEKEY="NWWtiQbDnSDvTdogCzAjqNqHGTZrRXdmXQrEKiv3vNs="
+   ```
+
+**for security, I recommend you to use different repos to store your source files and the `_site` files**   
+
++ ### origin:
+  * Fast (**1kb of CSS!** For more information on performance and more, see [Page Speed Insights report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/page-speed-insights-report.png) and [Lighthouse report](https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/lighthouse-report.png))
+  * Light, dark and auto modes
+  * Responsive
+  * Content first (typography optimized for maximum readability)
+  * SEO optimized (uses [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag))
+  * RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))
+  * Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))
+
+
 
 ## Installation
 
@@ -26,13 +76,13 @@ NOTE: if you are using Jekyll with GitHub Pages, see the [GitHub Pages installat
 Then, to style your blog with this theme, add this line to your Jekyll site's `Gemfile`:
 
 ```ruby
-gem "no-style-please"
+gem "no-style-please2"
 ```
 
 And add this line to your Jekyll site's `_config.yml`:
 
 ```yaml
-theme: no-style-please
+theme: no-style-please2
 ```
 
 And then execute:
@@ -42,17 +92,7 @@ And then execute:
 Or install it yourself as:
 
     $ gem install no-style-please
-
-### GitHub Pages installation
-
-If you want to use this theme for your Jekyll's site deployed on [GitHub Pages](https://pages.github.com/), follow the instructions on [this page](https://docs.github.com/en/github/working-with-github-pages/adding-a-theme-to-your-github-pages-site-using-jekyll#adding-a-theme).
-
-## Usage
-
-You can edit `_config.yml` file to customize your blog. You can change things such as the name of the blog, the author, the appearance of the theme (light, dark or auto), how dates are formatted, etc. Customizable fields should be straightforward to understand. Still, `_config.yml` contains some comments to help you understand what each field does.
-
-For further customization (e.g. layout, CSS) see the [official Jekyll's documentation](https://jekyllrb.com/docs/themes/#overriding-theme-defaults) on customizing gem-based themes.
-
+ 
 ### Customize the menu
 
 In order to add/edit/delete entries from the main menu, you have to edit the `menu.yml` file inside `_data` folder. Through that file you can define the structure of the menu. Take a look at the default configuration to get an idea of how it works and read on for a more comprehensive explanation.
@@ -119,5 +159,5 @@ To add a custom directory to your theme-gem, please edit the regexp in `no-style
 
 ## License
 
-The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The theme is available as open source under the terms of the [GPL License](./LICENSE.txt).
 
