@@ -1,0 +1,18 @@
+---
+layout: default
+---
+{%-include back_link.html -%}
+<div class="post">
+<h1>{{page.title}}</h1>
+<article>
+
+    {% for item in  site.tags %}
+       <lu>
+            <a href ="{{ site['baseurl']}}/tags/{{ item[0]}}.html" ><text>{{ item[0]}}</text></a> &nbsp;
+        </lu>
+    {% endfor %}
+    
+</article>
+</div>
+ 
+

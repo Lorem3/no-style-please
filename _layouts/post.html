@@ -10,6 +10,17 @@ layout: default
   </p>
   
   <h1>{{ page.title }}</h1>
+  {% for tag in page.tags %}
+  {% capture tag_name %}{{ tag }}{% endcapture %}
+      <a href="{{ site.baseurl }}/tags/{{ tag_name }}.html"><text><nobr>#{{ tag_name }}</nobr></text>&nbsp;</a>
+        {% endfor %}</span>
 
+  {%- capture enc %}{{ content | encrypt_if_need:page}}{% endcapture -%}
+  {%- if  enc == '' -%}
   {{ content }}
+  {% else %}
+  {%-include encrypted.html-%}
+  {% endif %}
+  
+  
 </article>

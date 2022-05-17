@@ -6,8 +6,8 @@ entries:
     entries:
       - title: a (nearly) no-CSS, fast, minimalist Jekyll theme.
       - title: github repo
-        url: https://github.com/riggraz/no-style-please
-      - title: "used by <a href='https://riggraz.dev'>riggraz.dev</a> and <a href='https://github.com/riggraz/no-style-please/network/dependents'>many others</a>"
+        url: https://github.com/vitock/no-style-please
+
 
   - title: all posts
     post_list:
@@ -23,8 +23,8 @@ entries:
       show_more_text: See more posts...
       show_more_url: example2-archive.html
 
-  - title: rss
-    url: feed.xml
+  - title: tags
+    url: tags.html
   
   - title: another list
     entries:

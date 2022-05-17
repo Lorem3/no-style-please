@@ -1,0 +1,38 @@
+---
+layout: post
+title: "mathjax&amp;link"
+date: "2022-05-17 08:54:22"
+categories: 
+ - blog 
+mathjax: true 
+# key: false 
+tags:
+ - blog
+ - matjax
+ - link
+---
+
+# mathjax $E=MC^2$
+
+$$
+\begin{bmatrix}
+  F_n \\ 
+  F_{n-1}
+\end{bmatrix}
+= A \begin{bmatrix}
+  F_{n-1} \\ 
+  F_{n-2}
+\end{bmatrix}
+$$
+
+# link to other blog
+{%post_link encrypt blog 2:123%}
+```
+{% raw %}
+{%post_link encrypt blog 2:123%}
+{% endraw %}
+```
+# image
+
+
+{% asset_img nahan.png %}

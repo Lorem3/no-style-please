@@ -1,0 +1,61 @@
+
+<div id="encrypted">
+<h3> 内容已经加密</h3>
+<input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
+<p>
+<input type="button" value="解密" id="DecryptBtn"/>
+</div>
+<div id="decrypted">
+</div>
+<script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/salsa20.min.js"></script>
+<script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/base64.js"></script>
+<script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/md5.js"></script>
+<script>
+    var encryptedContent = '{{ content | contentEncrypt:page}}'
+
+    function hexToUint8Arr(hexString){
+        return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+    }
+    function decrypt (key0){
+        // const key = Uint8Array([...]); // 32 bytes key
+        var key = new TextEncoder("utf-8").encode(md5(key0));
+        
+        /// hex 
+        var nonceStr = encryptedContent.substring(0,16)
+        var nonce = hexToUint8Arr(nonceStr)
+
+        const msg = encryptedContent.substring(17)
+        const message = Base64.toUint8Array(msg)
+        // Encrypt //
+        const decrypt = new JSSalsa20(key, nonce).decrypt(message);
+        var plain = new TextDecoder("utf-8").decode(decrypt)
+        var check = md5(plain)
+        if(check.indexOf(nonceStr) == 0){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'none'
+            // / show decrypted 
+            document.getElementById("decrypted").innerHTML = plain
+
+            setTimeout(function(){
+                var loadevent = document.createEvent("Event")
+                loadevent.initEvent("load", true, true)
+
+                var DOMContentLoaded_event = document.createEvent("Event")
+                DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+
+                window.dispatchEvent(loadevent)
+                window.dispatchEvent(DOMContentLoaded_event)
+                console.log('333a334a')
+
+            }, 500);
+            
+        }else{
+            alert("wrong password.")
+        }   
+    }
+    
+    document.getElementById("DecryptBtn").onclick = function(){
+        var key = document.getElementById("passwordinput").value
+        decrypt(key);        
+    }
+</script>
