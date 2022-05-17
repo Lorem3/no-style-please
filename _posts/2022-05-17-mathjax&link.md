@@ -8,8 +8,8 @@ mathjax: true
 # key: false 
 tags:
  - blog
- - matjax
- - link
+ - math
+ - no-style-please2
 ---
 
 # mathjax $E=MC^2$

@@ -8,6 +8,8 @@ mathjax: false
 # key: false 
 tags:
  - encrypt2
+ - blog
+ - no-style-please2
 ---
 
 ```
