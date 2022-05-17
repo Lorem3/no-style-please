@@ -1,28 +1,21 @@
 
 <div id="encrypted">
-    {% if site.theme_config.encrypt_title %}
-    <h3> {{ site.theme_config.encrypt_title }} </h3>
-    {% else %}
-    <h3>Content is Encrypted</h3>
-    {% endif %}
+    <h3> {{ site.theme_config.encrypt_title | default : 'Content is Encrypted'}} </h3>
+   
     <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
     <p>
-    {% if site.theme_config.decrypt_btn %}
-    <input type="button" value= "{{ site.theme_config.decrypt_btn }}" id="DecryptBtn"/>
-    {% else %}
-    <input type="button" value= "Decrypt" id="DecryptBtn"/>
-    {% endif %}
+        <input type="button" value= "{{ site.theme_config.decrypt_btn | default : 'Decrypt' }}" id="DecryptBtn"/>
     
     </div>
     
     <div id="decrypted"  style = "display:none">
         <p>
         <div>
-            {% if site.theme_config.encrypt_btn %}
-            <input type="button" value= "{{ site.theme_config.encrypt_btn }}" id="EncryptBtn"/>
-            {% else %}
-            <input type="button" value= "Encrypt" id="EncryptBtn"/>
-            {% endif %}
+           
+            <input type="button" value= "{{ site.theme_config.encrypt_btn | default: 'Encrypt' }}" id="EncryptBtn"/>
+
+            <input type="button" value= "{{ site.theme_config.encrypt_clear_btn | default: 'Clear password cache' }}" id="ClearBtn"/>
+           
         </div>
         <div id = 'decryptContent'>
         </div>
@@ -91,6 +84,23 @@
     
             clearKey()
         }
+
+        document.getElementById("EncryptBtn").onclick = function(){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'block'
+            // / show decrypted 
+            document.getElementById("decrypted").style.display = "none"
+    
+            clearKey()
+        }
+
+        document.getElementById("ClearBtn").onclick = function(){
+            localStorage.clear();
+        }
+
+        
+
+        
     
         {% if site.theme_config.forbid_cache_password %}
         function readKey(){
