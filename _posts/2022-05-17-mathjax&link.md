@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "mathjax&amp;link"
+title: "MathJax link"
 date: "2022-05-17 08:54:22"
 categories: 
  - blog 

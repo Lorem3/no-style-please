@@ -26,27 +26,44 @@
     <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/md5.js"></script>
     <script>
         !function(){
-        var encryptedContent = '{{ content | contentEncrypt:page}}'
+        
+        {%- capture prefix0 %} {{page.url   |default: "no-style-please2" }} {% endcapture  -%}
+        {%- capture prefix %} {{prefix0 | strip }} {% endcapture  -%}
+        
+        const preFix = "{{prefix}}"
+        var encryptedContent = '{{ content | contentEncrypt:page, prefix}}'
+        const nonceStr = encryptedContent.substring(0,16);
+        const msg = encryptedContent.substring(17)
     
         function hexToUint8Arr(hexString){
             return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
         }
-        function decrypt (key0){
+
+
+        function decrypt (key0,isCached){
             // const key = Uint8Array([...]); // 32 bytes key
-            var key = new TextEncoder("utf-8").encode(md5(key0));
             
-            /// hex 
-            var nonceStr = encryptedContent.substring(0,16)
+            var key  = ''
+            var keyDgst = ""
+            if(isCached){
+                keyDgst= key0
+                key = new TextEncoder("utf-8").encode(keyDgst);
+            }
+            else{
+                var keyS = preFix + key0 +  preFix
+                keyDgst = md5(keyS)
+                key = new TextEncoder("utf-8").encode(keyDgst);
+            }
             var nonce = hexToUint8Arr(nonceStr)
     
-            const msg = encryptedContent.substring(17)
+            
             const message = Base64.toUint8Array(msg)
             // Encrypt //
             const decrypt = new JSSalsa20(key, nonce).decrypt(message);
             var plain = new TextDecoder("utf-8").decode(decrypt)
             var check = md5(plain)
             if(check.indexOf(nonceStr) == 0){
-                setKey(key0)
+                setKey(keyDgst)
                 /// hide input
                 document.getElementById("encrypted").style.display = 'none'
                 // / show decrypted 
@@ -128,8 +145,9 @@
             }
             var cachekey = readKey()
             if(cachekey){
-                decrypt(cachekey)
+                decrypt(cachekey,true)
             }
+
         {% endif %}
         
         
