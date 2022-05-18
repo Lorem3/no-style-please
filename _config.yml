@@ -24,6 +24,8 @@ theme_config:
   tag_showall: true
   all_tags_path: tags
   all_tags_title: All Tags
+  archive_date_format: "%Y-%m"
+  archive_title_date_format: "%m-%d"
 
   # 
   # forbid_cache_password:  true

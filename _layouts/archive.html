@@ -6,4 +6,30 @@ layout: default
 
 <h1>{{ page.title }}</h1>
 
-{%-include post_list.html category=page.which_category-%}
+
+{%-assign posts = site.posts-%}
+{%- if posts.size > 0 -%}
+
+{% assign ymPre = "" %}
+{% capture archive_date_format %} {{ site.theme_config.archive_date_format | default: "%Y"}}{% endcapture %}
+
+{% capture archive_date_titleformat %} {{ site.theme_config.archive_title_date_format | default: "%m-%d"}}{% endcapture %}
+{%- for post in posts limit: include.limit -%}
+    {% capture  ymCur %} {{post.date | date: archive_date_format}} {% endcapture %}
+    {% if ymCur != ymPre %}
+        {{ymCur}}
+    {% endif %}
+    {% assign ymPre = ymCur %}
+
+
+  <ul>
+        
+        
+        <li>
+          <span>{{- post.date | date: archive_date_titleformat }}</span>
+          <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
+        </li>
+    
+  </ul>
+{%- endfor -%}
+{%- endif -%}
