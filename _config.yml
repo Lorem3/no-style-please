@@ -26,6 +26,7 @@ theme_config:
   all_tags_title: All Tags
   archive_date_format: "%Y-%m"
   archive_title_date_format: "%m-%d"
+  tags_layout_style: 'flat'  # flat auto list
 
   # 
   # forbid_cache_password:  true

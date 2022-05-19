@@ -5,15 +5,44 @@ layout: default
 <div class="post">
 <h1>{{page.title}}</h1>
 <article>
+    {% assign  layouttype = site.theme_config.tags_layout_style | default: "auto" %}
 
+    {% if layouttype == 'auto' %}
+        {% if site.tags.size > 20 %}
+            {% assign  layouttype = 'flat' %}
+        {% else %}
+            {% assign  layouttype = 'list' %}
+        {% endif %}
+    {% endif %} 
+    {% if layouttype == 'flat' %}
+        {% assign counter = 0 %}
+        {% for item in  site.tags %}
+        
+        {% assign counter2 = counter | modulo: 4 %}
+        {% if counter2  == 3 %}
+         <p>
+        {% endif %}
+        {% capture counter %}{% increment counter %} {% endcapture %}
+
+
+    <text><a href ="{{'/tags'|relative_url}}/{{ item[0]}}.html" >{{ item[0]}}</a></text> &nbsp; &nbsp;
+        
+        {% endfor %}
+    {% else %}
     <ul>
+        {% for item in  site.tags %}
+        <li>
+    <text><a href ="{{ site['baseurl']}}/tags/{{ item[0]}}.html" >{{ item[0]}}</a></text> &nbsp; 
+        </li>
+        {% endfor %}
+    </ul>
+
+    {% endif %}
+
     
-    {% for item in  site.tags %}
-       <li>
-            <a href ="{{ site['baseurl']}}/tags/{{ item[0]}}.html" ><text>{{ item[0]}}</text></a> &nbsp;
-       </li>
-    {% endfor %}
-    <ul>
+    
+
+     
     
 </article>
 </div>
