@@ -17,7 +17,7 @@ layout: default
 {%- for post in posts limit: include.limit -%}
     {% capture  ymCur %} {{post.date | date: archive_date_format}} {% endcapture %}
     {% if ymCur != ymPre %}
-        <h2>{{ymCur}}</h2>
+        <h3>{{ymCur}}</h3>
     {% endif %}
     {% assign ymPre = ymCur %}
 

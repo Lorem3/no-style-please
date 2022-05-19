@@ -6,11 +6,14 @@ layout: default
 <h1>{{page.title}}</h1>
 <article>
 
+    <ul>
+    
     {% for item in  site.tags %}
-       <lu>
+       <li>
             <a href ="{{ site['baseurl']}}/tags/{{ item[0]}}.html" ><text>{{ item[0]}}</text></a> &nbsp;
-        </lu>
+       </li>
     {% endfor %}
+    <ul>
     
 </article>
 </div>

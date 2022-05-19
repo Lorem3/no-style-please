@@ -2,9 +2,8 @@
 layout: default
 ---
 {%-include back_link.html -%}
-<div class="post">
-<h1></h1>
-<li>Tag: {{ page.tag }}</li>
+<ariticle>
+<h1>Tag: {{ page.tag }}</h1>
 
 <ul>
   {% for post in site.tags[page.tag] %}
@@ -12,13 +11,15 @@ layout: default
       {{ post.description }}
         </li>
         {% endfor %}
-        </ul>
-        </div>
+
 {% if site.theme_config.tag_showall %}
         <li><a href="{{ site.baseurl }}/{{site.theme_config.all_tags_path | default:'tags' }}.html"> {{site.theme_config.all_tags_title | default:'All Tags' }}</a>
         </li>
-         
 {% endif %}
+</ul>
        
         <hr>
+
+
+</ariticle>
         
