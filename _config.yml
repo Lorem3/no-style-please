@@ -18,15 +18,15 @@ theme_config:
   date_format: "%Y-%m-%d" # customize how date is formatted
   show_description: false # show blog description in home page
   encrypt_title: "Content is Encryped :)"
-  encrypt_clear_btn: "清空缓存密码"
-  decrypt_btn: 解密
-  encrypt_btn: 重新加密
+  # encrypt_clear_btn: "清空缓存密码"
+  # decrypt_btn: 解密
+  # encrypt_btn: 重新加密
   tag_showall: true
   all_tags_path: tags
   all_tags_title: All Tags
-  archive_date_format: "%Y-%m"
+  archive_date_format: "%Y"
   archive_title_date_format: "%m-%d"
-  tags_layout_style: 'flat'  # flat auto list
+  tags_layout_style: 'auto'  # flat auto list
 
   # 
   # forbid_cache_password:  true
