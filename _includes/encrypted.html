@@ -28,7 +28,7 @@
         !function(){
         
         {%- capture prefix0 %} {{page.url   |default: "no-style-please2" }} {% endcapture  -%}
-        {%- capture prefix %} {{prefix0 | strip }} {% endcapture  -%}
+        {%- capture prefix %}{{prefix0 | strip }}{% endcapture  -%}
         
         const preFix = "{{prefix}}"
         var encryptedContent = '{{ content | contentEncrypt:page, prefix}}'
