@@ -15,8 +15,8 @@ layout: default
       <a href="{{ site.baseurl }}/tags/{{ tag_name }}.html"><text><nobr>#{{ tag_name }}</nobr></text>&nbsp;</a>
         {% endfor %}</span>
 
-  {%- capture enc %}{{ content | encrypt_if_need:page}}{% endcapture -%}
-  {%- if  enc == '' -%}
+  {%- capture encid %}{{ "" | get_encrypt_id:page}}{% endcapture -%}
+  {%- if  encid == '' -%}
   {{ content }}
   {% else %}
   {%-include encrypted.html-%}
