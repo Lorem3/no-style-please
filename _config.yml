@@ -35,6 +35,7 @@ theme_config:
 
 sass:
   style: :compressed
+  sourcemap: "never"
 
 plugins:
    - no-style-please2-plugins 
