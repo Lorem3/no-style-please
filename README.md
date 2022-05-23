@@ -11,8 +11,7 @@ Inspired by [elly's site](http://tilde.town/~elly/) [riggraz](https://riggraz.de
 
 + ### new
   + tags support 
-  + mathjax , inluce_code post_link support, include 
-  + support, link to other post 
+  + mathjax , inluce_code post_link support, include  support, link to other post 
   + encrytion support. Only those who know the password can view the article
 
   **IMPORTANT NOTE**
@@ -20,16 +19,19 @@ Inspired by [elly's site](http://tilde.town/~elly/) [riggraz](https://riggraz.de
 
   
   #### how to encrypt your post
-  1. generate your own public & private key to protect your password
+      1. generate your own public & private key to protect your password
 ```
 ltectool g
 ```
-  you will get 
+    you will get 
   ```
 publickey: AAA
 privatekey: BBBBB
   ```
-  2. encrypt your password 
+
+      2. encrypt your password 
+
+
   ``` bash
    # ltectool e [your publickey] [your password]
    # like below
@@ -65,9 +67,10 @@ enc_tags:
   * Light, dark and auto modes
   * Responsive
   * Content first (typography optimized for maximum readability)
-  * SEO optimized (uses [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag))
-  * RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))
-  * Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))
+  * ~~SEO optimized (uses [Jekyll SEO Tag](https://github.com/jekyll/jekyll-seo-tag))~~
+  * ~~RSS feed (uses [Jekyll Feed](https://github.com/jekyll/jekyll-feed))~~
+  * ~~Fully compatible with [GitHub Pages](https://pages.github.com/) (see [GitHub Pages installation](#github-pages-installation))~~
+  > you should build the _site by yourself , because githubpage do not support all plugins
 
 
 
@@ -115,6 +118,24 @@ The `menu.yml` file accepts the following fields:
         - `show_more_url`, which can be a string. It specifies the URL for the show more link. Use only if `show_more` is true. This will usually redirect to a page containing all posts, which you can easily create using an archive page (see [create archive pages](#create-archive-pages) section)
         - `show_more_text`, which can be a string. It specifies the text for the show more link. Use only if `show_more` is true.
     - `entries`, yes, you can have entries inside entries. In this way you can create nested sublists!
+### Show all tags
+create a `tags.md` with content below
+``` yml
+---
+title: TAGS
+layout: tags
+permalink: /tags/index.html
+---
+```
+
+add a entry in the _data/menu.yml
+``` yml
+- title: tags
+  url: tags
+```
+
+
+
 
 ### Create archive pages
 

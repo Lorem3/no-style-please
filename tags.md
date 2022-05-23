@@ -4,4 +4,5 @@
 
 title: TAGS
 layout: tags
+permalink: tags/index.html
 ---

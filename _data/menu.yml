@@ -23,8 +23,8 @@ entries:
       show_more_text: See more posts...
       show_more_url: example2-archive.html
 
-  - title: tags
-    url: tags.html
+  - title: All Tags
+    url: tags
   
   - title: another list
     entries:
