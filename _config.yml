@@ -34,7 +34,7 @@ theme_config:
 
 
 sass:
-  style: :compressed
+  style: :nested
   sourcemap: "never"
 
 plugins:
