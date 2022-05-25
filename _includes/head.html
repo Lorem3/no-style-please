@@ -23,11 +23,13 @@
   {% endif %}
 
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon | relative_url }}" />
-  {% comment %}
-  <!-- <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" /> -->
-  {% endcomment %}
+  {% if site.theme_config.combine_css_html %}
   <style>
     {%- include main.css -%}
   </style>
+  {% else %}
+  <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
+  {% endif %}
+  
 
 </head>
