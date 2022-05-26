@@ -13,13 +13,9 @@ layout: default
         {% endfor %}
 
 {% if site.theme_config.tag_showall %}
-        <li><a href="{{ site.baseurl }}/{{site.theme_config.all_tags_path | default:'tags' }}.html"> {{site.theme_config.all_tags_title | default:'All Tags' }}</a>
+        <li><a href="{{ site.baseurl }}/{{site.theme_config.all_tags_path | default:'tags' }}"> {{site.theme_config.all_tags_title | default:'All Tags' }}</a>
         </li>
 {% endif %}
 </ul>
-       
-        <hr>
-
-
 </ariticle>
         
