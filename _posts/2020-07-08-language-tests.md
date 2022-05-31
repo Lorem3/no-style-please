@@ -39,7 +39,8 @@ This is a chinese test post to show you how chinese is displayed.
 
 From [亂數假文產生器 - Chinese Lorem Ipsum.](http://www.richyli.com/tool/loremipsum/) 
 
-
+---
+{:data-content="abd可以的"}
 
 ### 3. 简体中文测试
 

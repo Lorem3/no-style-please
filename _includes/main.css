@@ -1,4 +1,4 @@
- body[a="dark"] {
+body[a="dark"] {
   filter: invert(1); }
   body[a="dark"] img {
     filter: invert(1); }
@@ -21,7 +21,7 @@ html {
 
 body {
   color: black;
-  font-family: monospace;
+  font-family: 'Times New Roman', Times, serif;
   font-size: 16px;
   line-height: 1.4;
   margin: 0;
@@ -39,9 +39,9 @@ hr {
 
 p {
   margin: 1rem 0; }
- 
- li {
-  margin: 0.4rem 0; } 
+
+li {
+  margin: 0.4rem 0; }
 
 *:target {
   background: yellow; }
@@ -53,14 +53,18 @@ p {
 
 hr {
   text-align: center;
-  border: 0; }
+  border: 0; 
+  font-family: serif;
+}
   hr:before {
-    content: '/////'; }
+    content: '/////';
+    font-family: monospace; }
   hr:after {
-    content: attr(data-content) "/////"; }
+    content: attr(data-content) "/////";
+    font-family: monospace; }
 
 table {
-  width: 100%; } 
+  width: 100%; }
 
 table, th, td {
   border: thin solid black;
