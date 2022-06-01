@@ -25,7 +25,10 @@ $$
 \end{bmatrix}
 $$
 
-# link to other blog
+
+
+
+# `link` to other `blog`
 {%post_link encrypt blog 2:123 %}
 
 {%post_link BlogNotExist %}
