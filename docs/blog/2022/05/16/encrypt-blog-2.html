@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  <title>encrypt blog 2:123</title>
+
+  
+    
+ 
+     
+     
+     
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+  
+  <style>body[a="dark"] {
+  filter: invert(1); }
+  body[a="dark"] img {
+    filter: invert(1); }
+    body[a="dark"] img.ioda {
+      filter: invert(0); }
+
+@media (prefers-color-scheme: dark) {
+  body[a="auto"] {
+    filter: invert(1); }
+    body[a="auto"] img {
+      filter: invert(1); }
+      body[a="auto"] img.ioda {
+        filter: invert(0); } }
+
+html, body {
+  background: white; }
+
+html {
+  height: 100%; }
+
+body {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100%;
+  overflow-wrap: break-word; }
+
+.post-meta {
+  text-align: right; }
+
+h2, h3, h4, h5, h6 {
+  margin-top: 3rem; }
+
+hr {
+  margin: 2rem 0; }
+
+p {
+  margin: 1rem 0; }
+
+li {
+  margin: 0.4rem 0; }
+
+*:target {
+  background: yellow; }
+
+.w {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 2rem; }
+
+hr {
+  text-align: center;
+  border: 0; 
+  font-family: serif;
+}
+  hr:before {
+    content: '/////';
+    font-family: monospace; }
+  hr:after {
+    content: attr(data-content) "/////";
+    font-family: monospace; }
+
+table {
+  width: 100%; }
+
+table, th, td {
+  border: thin solid black;
+  border-collapse: collapse;
+  padding: 0.4rem; }
+
+code {
+  color: white;
+  background: gray; }
+
+div.highlighter-rouge code {
+  display: block;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  padding: 1rem; }
+
+blockquote {
+  font-style: italic;
+  border: thin solid black;
+  padding: 1rem; }
+  blockquote p {
+    margin: 0; }
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto; }
+</style>
+  
+  
+
+</head><body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">..</a><article>
+  <p class="post-meta">
+    <time datetime="2022-05-16 19:00:58 +0800">2022-05-16</time>
+  </p>
+  
+  <h1>encrypt blog 2:123</h1>
+  
+  
+      <a href="/tags/encrypt2.html"><text><nobr>#encrypt2</nobr></text>&nbsp;</a>
+        
+  
+      <a href="/tags/blog.html"><text><nobr>#blog</nobr></text>&nbsp;</a>
+        
+  
+      <a href="/tags/no-style-please2.html"><text><nobr>#no-style-please2</nobr></text>&nbsp;</a>
+        </span>
+<div id="encrypted">
+    <h3> Content is Encryped :) </h3>
+   
+    <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
+    <p>
+        <input type="button" value= "Decrypt" id="DecryptBtn"/>
+        <input type="button" value= "Clear password cache" id="ClearBtn1"/>
+    
+    </div>
+    
+    <div id="decrypted"  style = "display:none">
+        <p>
+        <div>
+           
+            <input type="button" value= "Encrypt" id="EncryptBtn"/>
+
+            <input type="button" value= "Clear password cache" id="ClearBtn2"/>
+           
+        </div>
+        <div id = 'decryptContent'>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/salsa20.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/base64.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/md5.js"></script>
+    <script>
+        !function(){
+        const preFix = 'b3447d8bd1e0cdbb04cc6bce88838759a';
+        const encid = preFix
+        var encryptedContent = 'ce7be026f9d9130e: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'
+        const nonceStr = encryptedContent.substring(0,16);
+        const msg = encryptedContent.substring(17)
+    
+        function hexToUint8Arr(hexString){
+            return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        }
+
+
+        function decrypt (key0,isCached){
+            // const key = Uint8Array([...]); // 32 bytes key
+            
+            var key  = ''
+            var keyDgst = ""
+            if(isCached){
+                keyDgst= key0
+                key = new TextEncoder("utf-8").encode(keyDgst);
+            }
+            else{
+                var keyS = preFix + key0 +  preFix
+                keyDgst = md5(keyS)
+                key = new TextEncoder("utf-8").encode(keyDgst);
+            }
+            var nonce = hexToUint8Arr(nonceStr)
+    
+            
+            const message = Base64.toUint8Array(msg)
+            // Encrypt //
+            const decrypt = new JSSalsa20(key, nonce).decrypt(message);
+            var plain = new TextDecoder("utf-8").decode(decrypt)
+            var check = md5(plain)
+            if(check.indexOf(nonceStr) == 0){
+                setKey(keyDgst)
+                /// hide input
+                document.getElementById("encrypted").style.display = 'none'
+                // / show decrypted 
+    
+                document.getElementById("decrypted").style.display = 'block'
+                document.getElementById("decryptContent").innerHTML = plain
+    
+                setTimeout(function(){
+                    var loadevent = document.createEvent("Event")
+                    loadevent.initEvent("load", true, true)
+    
+                    var DOMContentLoaded_event = document.createEvent("Event")
+                    DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+    
+                    window.dispatchEvent(loadevent)
+                    window.dispatchEvent(DOMContentLoaded_event)
+                    console.log('333a334a')
+    
+                }, 500);
+                
+            }else{
+                alert("wrong password.")
+            }   
+        }
+        
+        document.getElementById("DecryptBtn").onclick = function(){
+            var key = document.getElementById("passwordinput").value
+            decrypt(key);        
+        }
+    
+        document.getElementById("EncryptBtn").onclick = function(){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'block'
+            // / show decrypted 
+            document.getElementById("decrypted").style.display = "none"
+    
+            clearKey()
+        }
+
+        document.getElementById("EncryptBtn").onclick = function(){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'block'
+            // / show decrypted 
+            document.getElementById("decrypted").style.display = "none"
+    
+            clearKey()
+        }
+
+        document.getElementById("ClearBtn1").onclick = function(){
+            localStorage.clear();
+        }
+        document.getElementById("ClearBtn2").onclick = function(){
+            localStorage.clear();
+        }
+
+        
+
+        
+    
+        
+            function readKey(){
+                var key = encid;
+                return localStorage.getItem(key)
+            }
+            function setKey(value){
+                var key = encid
+                return localStorage.setItem(key,value)
+            }
+            function clearKey() {
+                var key = encid
+                localStorage.removeItem(key)
+            }
+            var cachekey = readKey()
+            if(cachekey){
+                decrypt(cachekey,true)
+            }
+
+        
+        
+        
+    
+    }()
+    
+    </script>
+    
+  
+  
+</article>
+
+      </div>
+    </main>
+  </body>
+</html>

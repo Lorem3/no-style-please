@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+  <title>encrypted blogZZ:123</title>
+
+  
+    
+ 
+     
+     
+     
+  
+
+  <link rel="shortcut icon" type="image/x-icon" href="/logo.png" />
+  
+  <style>body[a="dark"] {
+  filter: invert(1); }
+  body[a="dark"] img {
+    filter: invert(1); }
+    body[a="dark"] img.ioda {
+      filter: invert(0); }
+
+@media (prefers-color-scheme: dark) {
+  body[a="auto"] {
+    filter: invert(1); }
+    body[a="auto"] img {
+      filter: invert(1); }
+      body[a="auto"] img.ioda {
+        filter: invert(0); } }
+
+html, body {
+  background: white; }
+
+html {
+  height: 100%; }
+
+body {
+  color: black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  min-height: 100%;
+  overflow-wrap: break-word; }
+
+.post-meta {
+  text-align: right; }
+
+h2, h3, h4, h5, h6 {
+  margin-top: 3rem; }
+
+hr {
+  margin: 2rem 0; }
+
+p {
+  margin: 1rem 0; }
+
+li {
+  margin: 0.4rem 0; }
+
+*:target {
+  background: yellow; }
+
+.w {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 4rem 2rem; }
+
+hr {
+  text-align: center;
+  border: 0; 
+  font-family: serif;
+}
+  hr:before {
+    content: '/////';
+    font-family: monospace; }
+  hr:after {
+    content: attr(data-content) "/////";
+    font-family: monospace; }
+
+table {
+  width: 100%; }
+
+table, th, td {
+  border: thin solid black;
+  border-collapse: collapse;
+  padding: 0.4rem; }
+
+code {
+  color: white;
+  background: gray; }
+
+div.highlighter-rouge code {
+  display: block;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  padding: 1rem; }
+
+blockquote {
+  font-style: italic;
+  border: thin solid black;
+  padding: 1rem; }
+  blockquote p {
+    margin: 0; }
+
+img {
+  max-width: 100%;
+  display: block;
+  margin: 0 auto; }
+</style>
+  
+  
+
+</head><body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">..</a><article>
+  <p class="post-meta">
+    <time datetime="2022-05-16 18:55:32 +0800">2022-05-16</time>
+  </p>
+  
+  <h1>encrypted blogZZ:123</h1>
+  
+  
+      <a href="/tags/blog.html"><text><nobr>#blog</nobr></text>&nbsp;</a>
+        
+  
+      <a href="/tags/no-style-please2.html"><text><nobr>#no-style-please2</nobr></text>&nbsp;</a>
+        </span>
+<div id="encrypted">
+    <h3> Content is Encryped :) </h3>
+   
+    <input style="width:100%; " type="password" id="passwordinput" placeholder="输入密码"></input>
+    <p>
+        <input type="button" value= "Decrypt" id="DecryptBtn"/>
+        <input type="button" value= "Clear password cache" id="ClearBtn1"/>
+    
+    </div>
+    
+    <div id="decrypted"  style = "display:none">
+        <p>
+        <div>
+           
+            <input type="button" value= "Encrypt" id="EncryptBtn"/>
+
+            <input type="button" value= "Clear password cache" id="ClearBtn2"/>
+           
+        </div>
+        <div id = 'decryptContent'>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/salsa20.min.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/base64.js"></script>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/md5.js"></script>
+    <script>
+        !function(){
+        const preFix = 'b3447d8bd1e0cdbb04cc6bce88838759a';
+        const encid = preFix
+        var encryptedContent = '5f24584c15f610d5:ivksD8eELdiOsAMsk7vccM+3NQX786i31t82koq0aTTjCLIewb7wyN4TfPT1wnqfqNjQlieiC0oydYMWzsZqrBiX7leZt9PxcUz3YnBtjZy3Ac1bmFo3sTiJK4uHoVRoaIIQ4+QztysNB0VNamgac2Ovqzsxkynt1YSmTD9AP7JWKVosGQBt0+YhQppjMiwlS6sSLnVSobalOO1rjGDeUCeI1nQ/0RyAORtTZp7yGt/I17u8FL2nzGzYbG39BxnjxNvjFzG5QkouAK2JBb/djKffcrTRp9jhkOvo5jPZbqpQrQ/n7tr5wl8ZwmRXB0Te95XixUfZ9g4p4a7mONffFxq4zHWDfAmDhY4MQmDv44l8N3GZEbebbl4K0JnpQsXg6ZV366E7tw57NhmBfOGRydh7ijjx6y/+dYvpU12J+YJJukmLf+93V70='
+        const nonceStr = encryptedContent.substring(0,16);
+        const msg = encryptedContent.substring(17)
+    
+        function hexToUint8Arr(hexString){
+            return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+        }
+
+
+        function decrypt (key0,isCached){
+            // const key = Uint8Array([...]); // 32 bytes key
+            
+            var key  = ''
+            var keyDgst = ""
+            if(isCached){
+                keyDgst= key0
+                key = new TextEncoder("utf-8").encode(keyDgst);
+            }
+            else{
+                var keyS = preFix + key0 +  preFix
+                keyDgst = md5(keyS)
+                key = new TextEncoder("utf-8").encode(keyDgst);
+            }
+            var nonce = hexToUint8Arr(nonceStr)
+    
+            
+            const message = Base64.toUint8Array(msg)
+            // Encrypt //
+            const decrypt = new JSSalsa20(key, nonce).decrypt(message);
+            var plain = new TextDecoder("utf-8").decode(decrypt)
+            var check = md5(plain)
+            if(check.indexOf(nonceStr) == 0){
+                setKey(keyDgst)
+                /// hide input
+                document.getElementById("encrypted").style.display = 'none'
+                // / show decrypted 
+    
+                document.getElementById("decrypted").style.display = 'block'
+                document.getElementById("decryptContent").innerHTML = plain
+    
+                setTimeout(function(){
+                    var loadevent = document.createEvent("Event")
+                    loadevent.initEvent("load", true, true)
+    
+                    var DOMContentLoaded_event = document.createEvent("Event")
+                    DOMContentLoaded_event.initEvent("DOMContentLoaded", true, true)
+    
+                    window.dispatchEvent(loadevent)
+                    window.dispatchEvent(DOMContentLoaded_event)
+                    console.log('333a334a')
+    
+                }, 500);
+                
+            }else{
+                alert("wrong password.")
+            }   
+        }
+        
+        document.getElementById("DecryptBtn").onclick = function(){
+            var key = document.getElementById("passwordinput").value
+            decrypt(key);        
+        }
+    
+        document.getElementById("EncryptBtn").onclick = function(){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'block'
+            // / show decrypted 
+            document.getElementById("decrypted").style.display = "none"
+    
+            clearKey()
+        }
+
+        document.getElementById("EncryptBtn").onclick = function(){
+            /// hide input
+            document.getElementById("encrypted").style.display = 'block'
+            // / show decrypted 
+            document.getElementById("decrypted").style.display = "none"
+    
+            clearKey()
+        }
+
+        document.getElementById("ClearBtn1").onclick = function(){
+            localStorage.clear();
+        }
+        document.getElementById("ClearBtn2").onclick = function(){
+            localStorage.clear();
+        }
+
+        
+
+        
+    
+        
+            function readKey(){
+                var key = encid;
+                return localStorage.getItem(key)
+            }
+            function setKey(value){
+                var key = encid
+                return localStorage.setItem(key,value)
+            }
+            function clearKey() {
+                var key = encid
+                localStorage.removeItem(key)
+            }
+            var cachekey = readKey()
+            if(cachekey){
+                decrypt(cachekey,true)
+            }
+
+        
+        
+        
+    
+    }()
+    
+    </script>
+    
+  
+  
+</article>
+
+      </div>
+    </main>
+  </body>
+</html>

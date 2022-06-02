@@ -3,7 +3,7 @@
 <img src="https://raw.githubusercontent.com/riggraz/no-style-please/master/logo.png" width="64" align="left" />A (nearly) no-CSS, fast, minimalist [Jekyll](https://jekyllrb.com/) theme.
 Inspired by [elly's site](http://tilde.town/~elly/) [riggraz](https://riggraz.dev/)
 
-<h3 align="center"><a href="https://vitock.github.io/no-style-please">Try the demo out!</a></h3>
+<h3 align="center"><a href="https://vitock.github.io/no-style-please-demo">Try the demo out!</a></h3>
 
 <img src="https://raw.githubusercontent.com/riggraz/no-style-please/master/_screenshots/featured-image.png" />
 
