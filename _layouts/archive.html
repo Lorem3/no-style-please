@@ -17,19 +17,12 @@ layout: default
 {%- for post in posts limit: include.limit -%}
     {% capture  ymCur %} {{post.date | date: archive_date_format}} {% endcapture %}
     {% if ymCur != ymPre %}
-        <h3>{{ymCur}}</h3>
+        <h2>{{ymCur}}</h2>
     {% endif %}
     {% assign ymPre = ymCur %}
-
-
-  <ul>
-        
-        
-        <li>
+    <li>
           <span>{{- post.date | date: archive_date_titleformat }}</span>
           <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
-        </li>
-    
-  </ul>
+    </li>
 {%- endfor -%}
 {%- endif -%}
