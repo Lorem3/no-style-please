@@ -14,15 +14,25 @@ layout: default
 {% capture archive_date_format %} {{ site.theme_config.archive_date_format | default: "%Y"}}{% endcapture %}
 
 {% capture archive_date_titleformat %} {{ site.theme_config.archive_title_date_format | default: "%m-%d"}}{% endcapture %}
+<ul>
 {%- for post in posts limit: include.limit -%}
     {% capture  ymCur %} {{post.date | date: archive_date_format}} {% endcapture %}
     {% if ymCur != ymPre %}
-        <h2>{{ymCur}}</h2>
+        {% if ymPre != "" %}
+             </ul>
+        {% endif %}
+      <li><h2>{{ymCur}}</h2></li> 
+      <ul>
     {% endif %}
     {% assign ymPre = ymCur %}
+    
     <li>
           <span>{{- post.date | date: archive_date_titleformat }}</span>
           <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
     </li>
+
 {%- endfor -%}
+</ul>
 {%- endif -%}
+
+ 
