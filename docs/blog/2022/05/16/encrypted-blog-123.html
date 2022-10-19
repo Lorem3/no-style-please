@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   
-  <title>encrypted blogZZ:123</title>
+  <title>encrypted blog:abc</title>
 
   
     
@@ -123,7 +123,7 @@ img {
     <time datetime="2022-05-16 18:55:32 +0800">2022-05-16</time>
   </p>
   
-  <h1>encrypted blogZZ:123</h1>
+  <h1>encrypted blog:abc</h1>
   
   
       <a href="/no-style-please/tags/blog.html"><text><nobr>#blog</nobr></text>&nbsp;</a>
@@ -153,47 +153,59 @@ img {
         <div id = 'decryptContent'>
         </div>
     </div>
-    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/salsa20.min.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/base64.js"></script>
-    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.1/js/md5.js"></script>
+    <script>
+        var exports = exports || {} 
+    </script>
+    <script src="//cdn.jsdelivr.net/gh/vitock/jsdelivr@0.1.2/js/base64js.js"></script>
     <script>
         !function(){
-        const preFix = 'b3447d8bd1e0cdbb04cc6bce88838759a';
-        const encid = preFix
-        var encryptedContent = '5f24584c15f610d5:ivksD8eELdiOsAMsk7vccM+3NQX786i31t82koq0aTTjCLIewb7wyN4TfPT1wnqfqNjQlieiC0oydYMWzsZqrBiX7leZt9PxcUz3YnBtjZy3Ac1bmFo3sTiJK4uHoVRoaIIQ4+QztysNB0VNamgac2Ovqzsxkynt1YSmTD9AP7JWKVosGQBt0+YhQppjMiwlS6sSLnVSobalOO1rjGDeUCeI1nQ/0RyAORtTZp7yGt/I17u8FL2nzGzYbG39BxnjxNvjFzG5QkouAK2JBb/djKffcrTRp9jhkOvo5jPZbqpQrQ/n7tr5wl8ZwmRXB0Te95XixUfZ9g4p4a7mONffFxq4zHWDfAmDhY4MQmDv44l8N3GZEbebbl4K0JnpQsXg6ZV366E7tw57NhmBfOGRydh7ijjx6y/+dYvpU12J+YJJukmLf+93V70='
-        const nonceStr = encryptedContent.substring(0,16);
-        const msg = encryptedContent.substring(17)
-    
-        function hexToUint8Arr(hexString){
-            return new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
-        }
+
+            const substl = crypto.subtle
+            const preFix = 'd226429d34f7269719f31fc813d79c895';
+            const encid = preFix
+            const encryptedContent = 'E1.w11Ryb12L9Fx8Y3PvJ8MPyRgmRtKnKbtAwip/F84OfSLhtgvJz+mc+lfmMWrYcMgfu5rSpyQWoEpQJW+sKr+showZrhq2mofmUlC4tLbshuYpB9UXGeVGg978sVCdoKSk2xnZGri/Imk12PxtCjD2MrCNYqAC1n7GwCYKkI18Mvc8i2qNpAfM+8GPL9bW9LNdiizXZZ8urxAjoZ+J9C7a0C3lhTiYcV0Zxs5OO220JU74j/Vwt3Gz8R1RnY/yuW6Y9ekkw30z1dBDyCxLy2kv51SM6KKk475kLqDXVs038pklokpsOmhUorrXyjCg4nIVDhpw/kenQk1z3BBOfcGlyNccG39V0yoqfH5ojzWJePs4TlMANzJ0H0J3rysF3hi02Nm6VcBRFGTLti3/RaEj4PI/CNuqtrLq3PAxd0tyQ2/WqqU8su8ZRENYJWm5bfAnwTFWELqkuVrVl0cnV2eRyTsOg5t'
+            const base64str = encryptedContent.substring(3)
+            const bfMsg = base64js.decode(base64str)
+            const bfIv = bfMsg.subarray(0,12)
+            const bfCipher = bfMsg.subarray(12)
+            
+            async function genKey(psw){
+                var keyRaw = new TextEncoder().encode(psw)
+                var key = await substl.importKey('raw',keyRaw,'PBKDF2',false,["deriveBits"])
+                const salt = 'this is a salt string 20221019'
+                let pbkdf2  = {
+                    name:"PBKDF2",hash: "SHA-256",iterations: 12345,salt: new TextEncoder().encode(salt)
+                }
+                return  await substl.deriveBits(pbkdf2,key,256);
+            }
 
 
-        function decrypt (key0,isCached){
+ 
+        async function decrypt (key0,isCached){
             // const key = Uint8Array([...]); // 32 bytes key
             
             var key  = ''
-            var keyDgst = ""
             if(isCached){
-                keyDgst= key0
-                key = new TextEncoder("utf-8").encode(keyDgst);
+                key = readKey()
             }
             else{
                 var keyS = preFix + key0 +  preFix
-                keyDgst = md5(keyS)
-                key = new TextEncoder("utf-8").encode(keyDgst);
+                key = await genKey(keyS)
             }
-            var nonce = hexToUint8Arr(nonceStr)
-    
-            
-            const message = Base64.toUint8Array(msg)
-            // Encrypt //
-            const decrypt = new JSSalsa20(key, nonce).decrypt(message);
-            var plain = new TextDecoder("utf-8").decode(decrypt)
-            var check = md5(plain)
-            if(check.indexOf(nonceStr) == 0){
-                setKey(keyDgst)
-                /// hide input
+            if (key.length == 0) {
+                return
+            }
+
+            var aeskey = {
+                name:"AES-GCM",
+                length:256
+            }
+            var keyObj = await substl.importKey('raw',key,aeskey,false,['decrypt'])
+            var aesDec= {name: "AES-GCM",iv:bfIv,tagLength:128}
+            try {
+                var bfDec  = await substl.decrypt(aesDec,keyObj,bfCipher)
+                var plain = new TextDecoder().decode(bfDec);
+                setKey(key)
                 document.getElementById("encrypted").style.display = 'none'
                 // / show decrypted 
     
@@ -209,13 +221,11 @@ img {
     
                     window.dispatchEvent(loadevent)
                     window.dispatchEvent(DOMContentLoaded_event)
-                    console.log('333a334a')
     
                 }, 500);
-                
-            }else{
+            } catch (error) {
                 alert("wrong password.")
-            }   
+            }
         }
         
         document.getElementById("DecryptBtn").onclick = function(){
@@ -255,11 +265,18 @@ img {
         
             function readKey(){
                 var key = encid;
-                return localStorage.getItem(key)
+                var v = localStorage.getItem(key)
+                if (v) {
+                    return base64js.decode(v)
+                }else{
+                    return null
+                }
             }
             function setKey(value){
                 var key = encid
-                return localStorage.setItem(key,value)
+                var arr = new Uint8Array(value)
+                var b64 = base64js.encode(arr)
+                return localStorage.setItem(key,b64)
             }
             function clearKey() {
                 var key = encid
@@ -273,7 +290,7 @@ img {
         
         
         
-    
+ 
     }()
     
     </script>

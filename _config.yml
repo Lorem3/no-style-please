@@ -49,7 +49,7 @@ enc_tags:
     - tag: ZZ
       password: '1'
     - tag: encrypt1
-      password: "123"  # plain text ,not recommed
+      password: "12345"  # plain text ,not recommed
 
       # do Not write you public or privatekey in your repo,
       # use ltectool g to generate a new one for your own blog

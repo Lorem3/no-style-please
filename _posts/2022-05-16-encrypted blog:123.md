@@ -1,11 +1,11 @@
 ---
 layout: post
-title: encrypted blogZZ:123   
+title: encrypted blog:abc   
 date: "2022-05-16 18:55:32"
 categories: 
  - blog 
 mathjax: false 
-key: 123
+key: abc
 tags:
  - blog
  - no-style-please2
