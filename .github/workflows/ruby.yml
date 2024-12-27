@@ -55,12 +55,12 @@ jobs:
 
  
     - name: Configure git
-        run: |
+      run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "you@example.com"
 
     - name: Commit generated files
-        run: |
+      run: |
           cd dist·
           git init 
           git add .
@@ -70,7 +70,7 @@ jobs:
           
           
           git push origin dist -f
-        env:
+      env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 自动获取 Git
             
   deploy:
