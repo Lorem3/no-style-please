@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "no-style-please2"
-  spec.version       = "0.8.0"
+  spec.version       = "0.8.1"
   spec.authors       = ["vitock"]
   spec.email         = ["r"]
 
@@ -13,6 +13,6 @@ Gem::Specification.new do |spec|
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README|_config\.yml)!i) }
 
   spec.add_runtime_dependency "jekyll", ">= 4.0.0"
-  spec.add_runtime_dependency "no-style-please2-plugins", "~>0.5.0"
+  spec.add_runtime_dependency "no-style-please2-plugins", "~>0.7.2"
 
 end

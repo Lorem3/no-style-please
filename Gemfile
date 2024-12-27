@@ -4,7 +4,7 @@ source "https://rubygems.org"
 
 gem "jekyll" ,"~>4.0.0"
 gem "kramdown-parser-gfm"
-gem "no-style-please2-plugins" ,"~>0.5.0"
+gem "no-style-please2-plugins" ,"~>0.7.2"
 gem "webrick"
 
 
