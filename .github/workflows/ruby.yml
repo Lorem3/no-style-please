@@ -45,6 +45,33 @@ jobs:
       uses: actions/upload-pages-artifact@v1
       with:
         path: ./docs
+
+   - name: buildforPage
+      run: |
+        rm _config.yml
+        mv config_for_pages.yml _config.yml
+
+        ./runThisToBuild
+
+ 
+   - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "you@example.com"
+
+      - name: Commit generated files
+        run: |
+          cd docs
+          git init 
+          git add .
+          git commit -m "Generated files after build"
+          git branch -b dist
+          git remote addd origin https://github.com/${{ github.repository }}.git
+          
+          
+          git push origin dist -f
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 自动获取 Git
             
   deploy:
     environment:
