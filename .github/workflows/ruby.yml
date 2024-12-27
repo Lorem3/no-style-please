@@ -46,7 +46,7 @@ jobs:
       with:
         path: ./docs
 
-   - name: buildforPage
+    - name: buildforPage
       run: |
         rm _config.yml
         mv config_for_pages.yml _config.yml
@@ -54,14 +54,14 @@ jobs:
         ./runThisToBuild
 
  
-   - name: Configure git
+    - name: Configure git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "you@example.com"
 
-      - name: Commit generated files
+    - name: Commit generated files
         run: |
-          cd docs
+          cd dist·
           git init 
           git add .
           git commit -m "Generated files after build"
