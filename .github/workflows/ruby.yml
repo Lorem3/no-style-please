@@ -61,7 +61,7 @@ jobs:
 
     - name: Commit generated files
       run: |
-          cd dist·
+          cd dist
           git init 
           git add .
           git commit -m "Generated files after build"
