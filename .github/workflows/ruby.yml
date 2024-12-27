@@ -61,11 +61,12 @@ jobs:
 
     - name: Commit generated files
       run: |
+          ls -al
           cd dist
           git init 
           git add .
           git commit -m "Generated files after build"
-          git branch -b dist
+          git checkout -b dist
           git remote addd origin https://github.com/${{ github.repository }}.git
           
           
