@@ -57,6 +57,10 @@ jobs:
 
     - name: Commit generated files
       run: |
+
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "you@example.com"
+          
           ls -al
           cd dist
           git init 
@@ -66,9 +70,7 @@ jobs:
           echo https://github.com/${{ github.repository }}.git
           git remote add origin https://github.com/${{ github.repository }}.git
 
-
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "you@example.com"
+          
           
           
 
