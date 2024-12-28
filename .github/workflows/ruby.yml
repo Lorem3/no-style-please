@@ -58,7 +58,6 @@ jobs:
         cat _config.yml| sed "s/\/no-style-please//g" > tmp.yml
 
         cat tmp.yml| sed "s/docs/dist/g" > _config.yml
-        cat _config.yml
 
          rm -rf docs 
         ./runThisToBuild
