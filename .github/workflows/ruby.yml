@@ -42,7 +42,9 @@ jobs:
       name: build
       run: |
         chmod +x ./runThisToBuild && ./runThisToBuild
-        find docs -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
+        pwd 
+        ls -al
+        find ./docs -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
@@ -53,9 +55,11 @@ jobs:
 
         cat _config.yml| sed "s/\/no-style-please//g" > _config.yml
 
+        cat _config.yml| sed "s/docs/dist/g" > _config.yml
+
         ./runThisToBuild
 
-        find dist -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
+        find ./dist -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
 
  
 
