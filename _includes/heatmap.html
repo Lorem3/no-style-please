@@ -1,0 +1,59 @@
+<div>
+{%- if include.collection -%}
+  {%- assign posts = include.collection -%}  
+{%- else -%}
+  {%- assign posts = site.posts -%}
+{%- endif -%}
+
+{% if datemapidOnPage == nil %}
+    {%- assign  datemapidOnPage = 0 -%}
+{%- else -%}
+    {%- assign  datemapidOnPage = datemapidOnPage  |  plus : 1-%}
+    
+{%- endif -%}
+
+
+{% assign mapEleId = "heatmap-" | append: datemapidOnPage %}
+<div class="heatmap-title">{{ include.title | default :""  }}</div>
+
+<div class='heatmap' id="{{mapEleId}}">
+  
+</div>
+{%- if datemapidOnPage == 0 -%}
+
+{% comment %}
+  只加载一次
+{% endcomment %}
+<script >
+  function create_heatmap(heatmapid,endYear){
+
+    {%- assign MothStr = site.theme_config.heatMapMonth  -%}
+    {%- assign HeatMapShowWeek = site.theme_config.heatMapShowWeek  -%}
+    {%- assign heatMapLoadCount = site.theme_config.heatMapLoadCount | default: 8  -%}
+    
+    const WeeKStartStr = "{{ site.theme_config.heatMapWeekStart | default: 0 }}" ;//  0 sunday 1 monday 2. tuesday ...
+
+    const heatMapLoadCount = {{heatMapLoadCount}};
+    var _MonthStr =  '{{ MothStr | default: "Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec" }}';
+    var _showWeek =  '{{ HeatMapShowWeek | default: "Sun Mon Tue Wed Thu Fri Sat" }}';
+    var _allyearurl =  '{{ "assets/dyn/allyear.json" | relative_url }}';
+    {% include heatmap.js  %}
+  }
+</script>
+
+{% else %}
+
+{%- endif -%}
+
+
+{{child_initialized}}
+
+<script> 
+!function(){
+  var endYear = "{{ include.endYear }}"
+  var mapid = "{{ mapEleId }}"
+  create_heatmap(mapid,endYear )
+}()
+</script>
+
+</div>

@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "no-style-please2"
-  spec.version       = "0.8.1"
+  spec.version       = "0.9.0"
   spec.authors       = ["vitock"]
   spec.email         = ["r"]
 
