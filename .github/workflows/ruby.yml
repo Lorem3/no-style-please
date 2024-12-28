@@ -44,7 +44,8 @@ jobs:
         chmod +x ./runThisToBuild && ./runThisToBuild
         pwd 
         ls -al
-        find ./docs -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
+        find ./docs -maxdepth 1 -type f -not -name  "*.html" -exec rm  {} \;
+        ls docs
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
@@ -59,7 +60,7 @@ jobs:
 
         ./runThisToBuild
 
-        find ./dist -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
+        find ./dist --maxdepth 1 -type f -not -name  "*.html" -exec rm  {} \;
 
  
 
