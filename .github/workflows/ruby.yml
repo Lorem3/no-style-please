@@ -52,6 +52,7 @@ jobs:
         path: ./docs
  
     - name: buildforPage
+      shell: bash
       run: |
 
         cat _config.yml| sed "s/\/no-style-please//g" > _config.yml
