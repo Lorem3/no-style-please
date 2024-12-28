@@ -40,18 +40,22 @@ jobs:
       # run: bundle install
     - shell: bash
       name: build
-      run: chmod +x ./runThisToBuild && ./runThisToBuild
+      run: |
+        chmod +x ./runThisToBuild && ./runThisToBuild
+        find docs -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v1
       with:
         path: ./docs
-
+ 
     - name: buildforPage
       run: |
-        rm _config.yml
-        mv config_for_pages.yml _config.yml
+
+        cat _config.yml| sed "s/\/no-style-please//g" > _config.yml
 
         ./runThisToBuild
+
+        find dist -depth 1 -type f -not -name  "*.html" -exec rm  {} \;
 
  
 
