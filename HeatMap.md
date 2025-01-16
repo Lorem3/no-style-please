@@ -1,3 +1,8 @@
 ---
 layout: heatmap
+permalink: heatmap
 ---
+
+--- 
+
+
