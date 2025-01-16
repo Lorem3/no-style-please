@@ -27,6 +27,6 @@
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
  
   {%- assign rnd = '' | rand_bytes:5 %}
-  <link rel="stylesheet" href="//no-style.kr7y.workers.dev/nostyle.css?{{rnd}}" /> 
+  <link rel="preload" as = 'style' href="//no-style.kr7y.workers.dev/nostyle.css?{{rnd}}" /> 
 
 </head>

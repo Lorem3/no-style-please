@@ -70,6 +70,9 @@ function uint8ArrayToHex(uint8Array) {
 
         async function decryptRaw(bf,key,outV){
             if(bf.length < 8){
+                if(outV){
+                     outV.count = bf.length
+                }
                 throw 'err'
             }
             let count = 0;
