@@ -56,18 +56,27 @@ jobs:
       name: build
       env:
         JEKYLL_EC_PRIVATEKEY: ${{ secrets.JEKYLL_EC_PRIVATEKEY }}  # 自动获取 Git
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 自动获取 Git
       run: |
         chmod +x ./runThisToBuild && ./runThisToBuild
         pwd 
         ls -al
         find ./docs -maxdepth 1 -type f -not \( -name  "*.html" -o -name "*.png" \) -exec rm  {} \;
-        ls docs
-        ls -al docs/post
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v1
-      with:
-        path: ./docs
+        cd docs
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "you@example.com"
+        ls -al
+        git init 
+        git add .
+        git commit -m "Generated files after build"
+        git checkout -b docs
+        git remote add origin https://github.com/${{ github.repository }}.git
+
+           
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} HEAD:docs -f  
+
+
  
     - name: buildforPage
       shell: bash

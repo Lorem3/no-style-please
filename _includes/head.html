@@ -8,6 +8,16 @@
   <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   {%- endif %}
 
+  <script>
+    setTimeout(() => {
+      {%- assign rnd = '' | rand_bytes:5 %}
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = '//no-style.kr7y.workers.dev/nostyle.css?{{rnd}}';
+      link.type = 'text/css';
+      document.head.appendChild(link);
+    }, 500);
+  </script>
   <title>
     {%- if page.title -%}
       {{ page.title }}
@@ -26,7 +36,6 @@
   <link rel="shortcut icon" type="image/x-icon" href="{{ site.favicon | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}" />
  
-  {%- assign rnd = '' | rand_bytes:5 %}
-  <link rel="preload" as = 'style' href="//no-style.kr7y.workers.dev/nostyle.css?{{rnd}}" /> 
+  
 
 </head>
