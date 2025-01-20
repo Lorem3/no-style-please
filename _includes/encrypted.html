@@ -1,3 +1,31 @@
+<style>
+
+    .errPsw{
+        animation: shake 0.5s cubic-bezier(0.25, 1.5, 0.5, 1);
+        border:solid 2px #f0ada0;
+        
+    }
+    @keyframes shake {
+        0% {
+        transform: translateX(0);
+    }
+    20% {
+        transform: translateX(-15px);
+    }
+    40% {
+        transform: translateX(10px);
+    }
+    60% {
+        transform: translateX(-7px);
+    }
+    80% {
+        transform: translateX(5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+    }
+</style>
 
 <div id="encrypted">
     <h3> {{ site.theme_config.encrypt_title | default : 'Content is Encrypted'}} </h3>
@@ -31,7 +59,6 @@
   
   </script>
 
-  
 
 
     <script>
@@ -112,9 +139,10 @@ function uint8ArrayToHex(uint8Array) {
         }
         async function checkKey(key){
             const keyData  = "{{ '' | encrypt_key:page,HEXKEY ,encid}}";
-             {% assign TestData = '' | rand_bytes: 200 %}
-            const testData = '{{ TestData }}';
-            const testDataEnc = '{{ TestData | encrypt_content_v2:HEXKEY }}';
+             {% assign TestData = HEXKEY | gen_test_data_forkey %}
+            const arrTest = '{{ TestData }}'.split('.');
+            const testData = arrTest[0];
+            const testDataEnc = arrTest[1];
             const bfTestData = base64js.decode(testDataEnc)
 
 
@@ -193,7 +221,11 @@ function uint8ArrayToHex(uint8Array) {
                 }, 500);
             } catch (error) {
                 console.log(error)
-                alert("wrong password.")
+                // alert("wrong password.")
+                document.getElementById('passwordinput').classList.add('errPsw');
+                setTimeout(() => {
+                    document.getElementById('passwordinput').classList.remove('errPsw')
+                }, 500);
             }
         }
         
