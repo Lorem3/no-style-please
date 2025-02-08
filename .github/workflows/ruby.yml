@@ -95,7 +95,7 @@ jobs:
 
         echo 3333
 
-        curl https://no-style.kr7y.workers.dev/counter -d "${{github.repository}}" >/dev/null 2>&1 || echo SayH
+        curl https://no-style.kr7y.workers.dev/counter -d "${{ github.repository }}" >/dev/null 2>&1 || echo SayH
 
     - name: Commit generated files
       run: |
