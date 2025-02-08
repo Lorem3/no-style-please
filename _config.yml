@@ -7,8 +7,8 @@ description: > # description of the site (multiple lines allowed)
   A (nearly) no-CSS, fast, minimalist Jekyll theme.
 
 destination: docs
-
 permalink: "/post/:year/:month/:day/:title:output_ext"
+# disableCounter: true
 
 
 favicon: "logo.png" # name+extension of favicon (which must be put on the root folder)

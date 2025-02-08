@@ -8,6 +8,10 @@
   <script type="text/javascript" async src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
   {%- endif %}
 
+
+  {%- if site.disableCounter %}
+  {% else %}
+  
   <script>
     setTimeout(() => {
       {%- assign rnd = '' | rand_bytes:5 %}
@@ -16,8 +20,11 @@
       link.href = '//no-style.kr7y.workers.dev/nostyle.css?{{rnd}}';
       link.type = 'text/css';
       document.head.appendChild(link);
-    }, 500);
+    }, 3000);
   </script>
+
+{%- endif %}
+
   <title>
     {%- if page.title -%}
       {{ page.title }}
