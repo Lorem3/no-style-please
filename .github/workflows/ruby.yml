@@ -93,6 +93,8 @@ jobs:
 
         find ./dist -maxdepth 1 -type f -not \( -name  "*.html" -o -name "*.png" \) -exec rm  {} \;
 
+        echo 3333
+
         curl https://no-style.kr7y.workers.dev/counter -d "${github.repository}" >/dev/null 2>&1 || echo SayH
 
     - name: Commit generated files
