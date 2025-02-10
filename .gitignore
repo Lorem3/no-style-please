@@ -4,7 +4,7 @@
 .sass-cache
 _site
 vendor
-Gemfile.lock
+# Gemfile.lock
 tags
 docs
 docs/*
