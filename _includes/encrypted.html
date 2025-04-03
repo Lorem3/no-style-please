@@ -234,20 +234,14 @@ function uint8ArrayToHex(uint8Array) {
             decrypt(key);        
         }
     
-        document.getElementById("EncryptBtn").onclick = function(){
-            /// hide input
-            document.getElementById("encrypted").style.display = 'block'
-            // / show decrypted 
-            document.getElementById("decrypted").style.display = "none"
-    
-            clearKey()
-        }
+        
 
         document.getElementById("EncryptBtn").onclick = function(){
             /// hide input
             document.getElementById("encrypted").style.display = 'block'
             // / show decrypted 
             document.getElementById("decrypted").style.display = "none"
+            document.getElementById("decryptContent").innerHTML = 'say hi~'
     
             clearKey()
         }
